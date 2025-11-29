@@ -1,6 +1,7 @@
 export default {
-  title: 28,
-  subtitle: 22,
+  title: 30,
+  subtitle: 20,
   body: 16,
-  small: 14,
+  small: 13,
+  xs: 12,
 };

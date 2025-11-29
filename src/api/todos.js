@@ -1,11 +1,12 @@
 import axios from "axios";
-const API = "http://127.0.0.1:8000";
+import getApiBaseUrl from "./config";
 
-export const getTodos = (token) =>
-  axios.get(\`\${API}/todos\`, { headers: { token } });
+const API = process?.env?.REACT_NATIVE_API_URL || getApiBaseUrl;
 
-export const addTodo = (title, token) =>
-  axios.post(\`\${API}/todos\`, { title }, { headers: { token } });
+const authHeader = (token) => ({ headers: { Authorization: `Bearer ${token}` } });
 
-export const completeTodo = (id, token) =>
-  axios.patch(\`\${API}/todos/\${id}\`, {}, { headers: { token } });
+export const getTodos = (token) => axios.get(`${API}/todos`, authHeader(token));
+
+export const addTodo = (title, token) => axios.post(`${API}/todos`, { title }, authHeader(token));
+
+export const completeTodo = (id, token) => axios.patch(`${API}/todos/${id}`, {}, authHeader(token));

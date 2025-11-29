@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "todo-backend"
+version = "0.1.0"
+description = "FastAPI backend for Todo app"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "*"
+uvicorn = "*"
+SQLAlchemy = "*"
+passlib = "*"
+python-jose = "*"
+python-dotenv = "*"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

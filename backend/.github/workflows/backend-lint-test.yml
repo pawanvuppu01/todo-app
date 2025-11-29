@@ -1,0 +1,31 @@
+name: Backend Lint & Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.12
+      - name: Install dependencies
+        run: |
+          python -m venv .venv
+          source .venv/bin/activate
+          pip install -r requirements.txt
+      - name: Run tests
+        run: |
+          source .venv/bin/activate
+          pytest -q
+      - name: Lint (basic)
+        run: |
+          source .venv/bin/activate || true
+          python -m pip install flake8
+          flake8 || true
