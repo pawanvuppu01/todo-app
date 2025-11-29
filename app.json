@@ -4,14 +4,16 @@
     "slug": "frontend",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/ocw-logo.png",
     "scheme": "frontend",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.yourcompany.todoapp"
     },
     "android": {
+      "package": "com.yourcompany.todoapp",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
@@ -43,6 +45,11 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    }
+    ,
+    "extra": {
+      "apiUrl": "http://localhost:8000",
+      "logo": "./assets/images/ocw-logo.png"
     }
   }
 }

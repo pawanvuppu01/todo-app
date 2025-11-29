@@ -21,7 +21,7 @@ pnpm start
 pnpm test
 ```
 
-Make sure the backend FastAPI server is running at `http://127.0.0.1:8000`.
+Make sure the backend FastAPI server is running at `http://127.0.0.1:8000` (or set your host IP for physical devices).
 
 ## Info
 - Uses AsyncStorage for token storage
@@ -48,7 +48,8 @@ ipconfig getifaddr en0  # or `hostname -I` on Linux
 - Set the API URL in your environment, using that IP address (port 8000 used in examples), for example in your shell running Expo:
 
 ```bash
-export REACT_NATIVE_API_URL="http://192.168.1.123:8000"
+# Example: set to your machine IP when running on a physical device
+export REACT_NATIVE_API_URL="http://<YOUR_HOST_IP>:8000"
 pnpm start
 ```
 
@@ -59,6 +60,7 @@ Notes:
 - If you develop inside Codespaces or a remote container, connect the backend to a publicly accessible host or run both backend and Expo on your local machine for easiest mobile access.
 
 - Components: InputField, ButtonPrimary, TodoItem
+ - Chat: ChatList, ChatScreen (1‑1 chats)
 
 ## Screenshots
 - Add screenshots of app here (take screenshots on device/emulator and place into `/assets/images/` then add the display examples below).

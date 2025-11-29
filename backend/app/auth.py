@@ -10,21 +10,7 @@ import os
 
 SECRET_KEY = os.getenv("JWT_SECRET", "supersecretkey")
 ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 * 7  # 1 week{
-  "expo": {
-    /* ... */
-    "extra": {
-      "apiUrl": "http://192.168.1.123:8000"
-    }
-  }
-}{
-  "expo": {
-    /* ... */
-    "extra": {
-      "apiUrl": "http://192.168.1.123:8000"
-    }
-  }
-}
+ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 * 7  # 1 week
 pwd_context = CryptContext(schemes=["pbkdf2_sha256"], deprecated="auto")
 
 
@@ -67,4 +53,17 @@ def get_current_user(token: Optional[str] = Header(None), authorization: Optiona
     user = db.query(models.User).filter(models.User.id == user_id).first()
     if user is None:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="User not found")
+    return user
+
+
+def get_user_from_token(raw_token: str, db: Session):
+    """Decode JWT token and return User or None"""
+    try:
+        payload = jwt.decode(raw_token, SECRET_KEY, algorithms=[ALGORITHM])
+        user_id: int = payload.get("user_id")
+        if user_id is None:
+            return None
+    except JWTError:
+        return None
+    user = db.query(models.User).filter(models.User.id == user_id).first()
     return user

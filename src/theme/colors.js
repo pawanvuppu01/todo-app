@@ -1,6 +1,6 @@
 export default {
   background: "#F2F6FA",
-  primary: "#0A84FF",
+  primary: "#0A6ED1",
   text: "#0B1F2D",
   subtext: "#6B7280",
   card: "#FFFFFF",

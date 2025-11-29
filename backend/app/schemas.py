@@ -1,5 +1,6 @@
 from pydantic import BaseModel, EmailStr
 from typing import Optional
+from datetime import datetime
 
 
 class UserCreate(BaseModel):
@@ -29,6 +30,36 @@ class TodoResponse(BaseModel):
     id: int
     title: str
     completed: bool
+
+    class Config:
+        orm_mode = True
+
+
+# Chat schemas
+class ConversationCreate(BaseModel):
+    title: Optional[str] = None
+    participant_emails: Optional[list[str]] = []
+
+
+class ConversationResponse(BaseModel):
+    id: int
+    title: Optional[str]
+    is_group: bool
+
+    class Config:
+        orm_mode = True
+
+
+class MessageCreate(BaseModel):
+    content: str
+
+
+class MessageResponse(BaseModel):
+    id: int
+    conversation_id: int
+    sender_id: int
+    content: str
+    created_at: Optional[datetime]
 
     class Config:
         orm_mode = True
